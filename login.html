@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sign In | Library</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+
+            background: #f6f3ed;
+            color: #292725;
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: #faf8f3;
+            border-bottom: 1px solid #ddd7cc;
+
+            padding: 18px 7%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 23px;
+            letter-spacing: 1px;
+        }
+
+        .brand span {
+            color: #a17d59;
+        }
+
+        .nav {
+            display: flex;
+            gap: 24px;
+        }
+
+        .nav a {
+            color: #55504a;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .nav a:hover {
+            color: #9a7654;
+        }
+
+        .main {
+            flex: 1;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 50px 20px;
+        }
+
+        .login-wrapper {
+            width: 100%;
+            max-width: 850px;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            background: #faf8f3;
+            border: 1px solid #ddd7cc;
+
+            box-shadow: 0 15px 40px rgba(50, 43, 35, 0.08);
+        }
+
+        .intro {
+            padding: 55px 45px;
+
+            background: #eee7dc;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .eyebrow {
+            color: #9a7654;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+
+            margin-bottom: 18px;
+        }
+
+        .intro h1 {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 43px;
+            font-weight: normal;
+
+            line-height: 1.1;
+
+            margin: 0 0 18px;
+        }
+
+        .intro p {
+            color: #6f6961;
+            font-size: 13px;
+            line-height: 1.8;
+
+            max-width: 330px;
+        }
+
+        .quote {
+            margin-top: 35px;
+
+            border-left: 2px solid #a17d59;
+
+            padding-left: 15px;
+
+            color: #766d63;
+
+            font-family: Georgia, "Times New Roman", serif;
+
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .form-area {
+            padding: 55px 45px;
+        }
+
+        .form-area h2 {
+            font-family: Georgia, "Times New Roman", serif;
+
+            font-size: 30px;
+            font-weight: normal;
+
+            margin: 0 0 8px;
+        }
+
+        .subtitle {
+            color: #777169;
+            font-size: 12px;
+
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+
+            color: #514b45;
+
+            font-size: 12px;
+
+            margin-bottom: 8px;
+            margin-top: 20px;
+        }
+
+        input {
+            width: 100%;
+
+            padding: 13px 12px;
+
+            background: #f6f3ed;
+
+            border: 1px solid #cfc7bb;
+
+            color: #292725;
+
+            font-size: 14px;
+
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #9a7654;
+        }
+
+        button {
+            width: 100%;
+
+            margin-top: 28px;
+
+            padding: 14px;
+
+            border: none;
+
+            background: #55483b;
+            color: white;
+
+            cursor: pointer;
+
+            font-size: 13px;
+
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background: #40362d;
+        }
+
+        .message {
+            margin-top: 18px;
+
+            font-size: 12px;
+
+            line-height: 1.5;
+
+            display: none;
+        }
+
+        .signup {
+            margin-top: 25px;
+
+            text-align: center;
+
+            color: #777169;
+
+            font-size: 12px;
+        }
+
+        .signup a {
+            color: #8d6849;
+
+            text-decoration: none;
+
+            font-weight: bold;
+        }
+
+        .signup a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            border-top: 1px solid #ddd7cc;
+
+            background: #faf8f3;
+
+            padding: 25px 7%;
+
+            display: flex;
+            justify-content: space-between;
+
+            color: #817b73;
+
+            font-size: 12px;
+        }
+
+        @media (max-width: 700px) {
+
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .login-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .intro {
+                padding: 40px 30px;
+            }
+
+            .form-area {
+                padding: 40px 30px;
+            }
+
+            .intro h1 {
+                font-size: 36px;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <header>
+
+        <div class="brand">
+            LIBRARY<span>.</span>
+        </div>
+
+
+        <div class="nav">
+
+            <a href="signup.html">
+                Sign Up
+            </a>
+
+            <a href="dashboard.html">
+                Home
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <main class="main">
+
+
+        <div class="login-wrapper">
+
+
+            <section class="intro">
+
+                <div class="eyebrow">
+                    Digital Library
+                </div>
+
+                <h1>
+                    Welcome<br>
+                    back.
+                </h1>
+
+                <p>
+                    Sign in to continue to your personal
+                    library space, browse the catalogue,
+                    manage reservations and check fines.
+                </p>
+
+                <div class="quote">
+                    A good library is a place where
+                    knowledge feels within reach.
+                </div>
+
+            </section>
+
+
+            <section class="form-area">
+
+                <h2>
+                    Sign In
+                </h2>
+
+                <div class="subtitle">
+                    Enter your library account details.
+                </div>
+
+
+                <form id="loginForm">
+
+
+                    <label for="username">
+                        Username
+                    </label>
+
+                    <input
+                        type="text"
+                        id="username"
+                        placeholder="Enter your username"
+                        required>
+
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Enter your password"
+                        required>
+
+
+                    <button type="submit">
+                        Sign In
+                    </button>
+
+
+                </form>
+
+
+                <div
+                    class="message"
+                    id="message">
+                </div>
+
+
+                <div class="signup">
+
+                    Don't have an account?
+
+                    <a href="signup.html">
+                        Create an account
+                    </a>
+
+                </div>
+
+            </section>
+
+
+        </div>
+
+
+    </main>
+
+
+    <footer>
+
+        <span>
+            Digital Library Portal
+        </span>
+
+        <span>
+            Project 40 · Sign In
+        </span>
+
+    </footer>
+
+
+    <script>
+
+        document
+            .getElementById("loginForm")
+            .addEventListener("submit", async function(event) {
+
+                event.preventDefault();
+
+
+                var username =
+                    document
+                    .getElementById("username")
+                    .value
+                    .trim();
+
+
+                var password =
+                    document
+                    .getElementById("password")
+                    .value;
+
+
+                var message =
+                    document.getElementById("message");
+
+
+                message.style.display = "none";
+
+
+                try {
+
+                    var response =
+                        await fetch(
+                            "http://localhost:8080/login",
+                            {
+                                method: "POST",
+
+                                headers: {
+                                    "Content-Type":
+                                        "application/x-www-form-urlencoded"
+                                },
+
+                                body:
+                                    "username=" +
+                                    encodeURIComponent(username) +
+                                    "&password=" +
+                                    encodeURIComponent(password)
+                            }
+                        );
+
+
+                    var text =
+                        await response.text();
+
+
+                    if (response.ok) {
+
+                        var parts =
+                            text.split("|");
+
+
+                        localStorage.setItem(
+                            "libraryUsername",
+                            username
+                        );
+
+
+                        if (parts.length > 1) {
+
+                            localStorage.setItem(
+                                "libraryMemberType",
+                                parts[1]
+                            );
+
+                        }
+
+
+                        message.style.display = "block";
+
+                        message.style.color = "#637052";
+
+                        message.textContent =
+                            "Sign in successful. Opening your library...";
+
+
+                        setTimeout(function() {
+
+                            window.location.href =
+                                "dashboard.html";
+
+                        }, 600);
+
+                    }
+
+                    else {
+
+                        message.style.display = "block";
+
+                        message.style.color = "#8a554d";
+
+                        message.textContent =
+                            text;
+
+                    }
+
+                }
+
+                catch (error) {
+
+                    message.style.display = "block";
+
+                    message.style.color = "#8a554d";
+
+                    message.textContent =
+                        "Unable to connect to the library server. Make sure the Java server is running.";
+
+                }
+
+            });
+
+    </script>
+
+
+</body>
+
+</html>

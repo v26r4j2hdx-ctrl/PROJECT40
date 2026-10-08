@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | LIBRARY.</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f6f3ed;
+            color: #292722;
+        }
+
+
+        /* NAVIGATION */
+
+        .nav {
+            min-height: 70px;
+            background: #fffdf8;
+            border-bottom: 1px solid #ddd7cc;
+
+            display: flex;
+            align-items: center;
+
+            padding: 0 55px;
+            gap: 28px;
+        }
+
+
+        .logo {
+            font-family: Georgia, serif;
+            font-size: 25px;
+            font-weight: bold;
+            letter-spacing: 3px;
+
+            margin-right: auto;
+        }
+
+
+        .nav a {
+            color: #5d564c;
+            text-decoration: none;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+
+        .nav a:hover {
+            color: #1f1d19;
+        }
+
+
+        .signout {
+            border-left: 1px solid #ddd7cc;
+            padding-left: 28px;
+        }
+
+
+        /* MAIN */
+
+        .container {
+            max-width: 1150px;
+            margin: auto;
+            padding: 55px 25px;
+        }
+
+
+        /* WELCOME */
+
+        .welcome {
+            margin-bottom: 45px;
+        }
+
+
+        .welcome small {
+            color: #8b8173;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 11px;
+        }
+
+
+        .welcome h1 {
+            font-family: Georgia, serif;
+            font-size: 48px;
+            line-height: 1.1;
+            font-weight: normal;
+            margin: 10px 0;
+        }
+
+
+        .welcome p {
+            color: #756d61;
+            font-size: 15px;
+        }
+
+
+        /* CARDS */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+
+        .card {
+            background: #fffdf8;
+            border: 1px solid #ddd7cc;
+            padding: 30px;
+            min-height: 175px;
+        }
+
+
+        .card-title {
+            color: #8b8173;
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+        }
+
+
+        .card-value {
+            font-family: Georgia, serif;
+            font-size: 27px;
+            margin-bottom: 8px;
+        }
+
+
+        .card-info {
+            color: #756d61;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+
+        /* ACCESS SECTION */
+
+        .section {
+            margin-top: 35px;
+
+            background: #fffdf8;
+            border: 1px solid #ddd7cc;
+
+            padding: 35px;
+        }
+
+
+        .section h2 {
+            font-family: Georgia, serif;
+            font-size: 27px;
+            font-weight: normal;
+            margin: 0 0 15px;
+        }
+
+
+        .section p {
+            color: #756d61;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+
+        /* QUICK LINKS */
+
+        .quick-links {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+
+
+        .quick-links a {
+            text-decoration: none;
+            color: #403a32;
+
+            border: 1px solid #cfc7ba;
+
+            padding: 12px 18px;
+
+            font-size: 13px;
+        }
+
+
+        .quick-links a:hover {
+            background: #403a32;
+            color: white;
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 850px) {
+
+            .nav {
+                padding: 15px 20px;
+                gap: 15px;
+                overflow-x: auto;
+            }
+
+
+            .logo {
+                margin-right: 10px;
+            }
+
+
+            .signout {
+                padding-left: 15px;
+            }
+
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+
+            .welcome h1 {
+                font-size: 38px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVIGATION -->
+
+    <div class="nav">
+
+        <div class="logo">
+            LIBRARY.
+        </div>
+
+
+        <a href="dashboard.html">
+            Home
+        </a>
+
+
+        <a href="books.html">
+            Catalogue
+        </a>
+
+
+        <a href="my-books.html">
+            My Books
+        </a>
+
+
+        <a href="reservations.html">
+            Reservations
+        </a>
+
+
+        <a href="fine.html">
+            Fine
+        </a>
+
+
+        <a href="rules.html">
+            Rules
+        </a>
+
+
+        <a href="#"
+           class="signout"
+           onclick="signOut()">
+            Sign Out
+        </a>
+
+    </div>
+
+
+
+    <!-- MAIN CONTENT -->
+
+    <div class="container">
+
+
+        <!-- WELCOME -->
+
+        <div class="welcome">
+
+            <small>
+                Library Dashboard
+            </small>
+
+
+            <h1>
+                Welcome,
+                <span id="username">Reader</span>.
+            </h1>
+
+
+            <p>
+                Your library account at a glance.
+            </p>
+
+        </div>
+
+
+
+        <!-- ACCOUNT INFORMATION -->
+
+        <div class="cards">
+
+
+            <!-- MEMBER TYPE -->
+
+            <div class="card">
+
+                <div class="card-title">
+                    Member Type
+                </div>
+
+
+                <div class="card-value"
+                     id="memberType">
+                    Member
+                </div>
+
+
+                <div class="card-info">
+                    Your library membership category
+                </div>
+
+            </div>
+
+
+
+            <!-- BORROWING LIMIT -->
+
+            <div class="card">
+
+                <div class="card-title">
+                    Borrowing Limit
+                </div>
+
+
+                <div class="card-value"
+                     id="maxBooks">
+                    -
+                </div>
+
+
+                <div class="card-info">
+                    Maximum books you can borrow
+                </div>
+
+            </div>
+
+
+
+            <!-- LOAN PERIOD -->
+
+            <div class="card">
+
+                <div class="card-title">
+                    Loan Period
+                </div>
+
+
+                <div class="card-value"
+                     id="loanDays">
+                    -
+                </div>
+
+
+                <div class="card-info">
+                    Days allowed for each loan
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- LIBRARY ACCESS -->
+
+        <div class="section">
+
+            <h2>
+                Your Library Access
+            </h2>
+
+
+            <p>
+                Browse the catalogue, select books, manage your
+                reservations and calculate overdue fines from the
+                options below.
+            </p>
+
+
+            <div class="quick-links">
+
+
+                <a href="books.html">
+                    Browse Catalogue
+                </a>
+
+
+                <a href="my-books.html">
+                    My Books
+                </a>
+
+
+                <a href="reservations.html">
+                    Reservations
+                </a>
+
+
+                <a href="fine.html">
+                    Fine Calculator
+                </a>
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+
+        /* GET SAVED ACCOUNT DETAILS */
+
+        const username =
+            localStorage.getItem("libraryUsername");
+
+
+        const savedMemberType =
+            localStorage.getItem("libraryMemberType");
+
+
+
+        /* SHOW USERNAME */
+
+        if (username) {
+
+            document
+                .getElementById("username")
+                .textContent = username;
+
+        }
+
+
+
+        /* SHOW MEMBER INFORMATION */
+
+        if (savedMemberType) {
+
+            const type =
+                savedMemberType.toLowerCase();
+
+
+            /* FACULTY */
+
+            if (type.includes("faculty")) {
+
+                document
+                    .getElementById("memberType")
+                    .textContent =
+                    "Research Faculty";
+
+
+                document
+                    .getElementById("maxBooks")
+                    .textContent =
+                    "10 books";
+
+
+                document
+                    .getElementById("loanDays")
+                    .textContent =
+                    "90 days";
+
+            }
+
+
+            /* STUDENT */
+
+            else {
+
+                document
+                    .getElementById("memberType")
+                    .textContent =
+                    "Undergraduate Student";
+
+
+                document
+                    .getElementById("maxBooks")
+                    .textContent =
+                    "3 books";
+
+
+                document
+                    .getElementById("loanDays")
+                    .textContent =
+                    "14 days";
+
+            }
+
+        }
+
+
+
+        /* SIGN OUT */
+
+        function signOut() {
+
+            localStorage.removeItem(
+                "libraryUsername"
+            );
+
+
+            localStorage.removeItem(
+                "libraryMemberType"
+            );
+
+
+            localStorage.removeItem(
+                "selectedBooks"
+            );
+
+
+            window.location.href =
+                "login.html";
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

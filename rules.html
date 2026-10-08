@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Library Rules | LIBRARY.</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f6f3ed;
+            color: #292722;
+        }
+
+        .nav {
+            height: 70px;
+            background: #fffdf8;
+            border-bottom: 1px solid #ddd7cc;
+            display: flex;
+            align-items: center;
+            padding: 0 55px;
+            gap: 30px;
+        }
+
+        .logo {
+            font-family: Georgia, serif;
+            font-size: 25px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            margin-right: auto;
+        }
+
+        .nav a {
+            color: #5d564c;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .nav a:hover {
+            color: #1f1d19;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 55px 25px 70px;
+        }
+
+        .heading {
+            margin-bottom: 45px;
+        }
+
+        .heading small {
+            color: #8b8173;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 11px;
+        }
+
+        .heading h1 {
+            font-family: Georgia, serif;
+            font-size: 48px;
+            font-weight: normal;
+            margin: 10px 0;
+        }
+
+        .heading p {
+            color: #756d61;
+            line-height: 1.7;
+            max-width: 700px;
+        }
+
+        .section {
+            background: #fffdf8;
+            border: 1px solid #ddd7cc;
+            padding: 35px;
+            margin-bottom: 25px;
+        }
+
+        .section h2 {
+            font-family: Georgia, serif;
+            font-size: 27px;
+            font-weight: normal;
+            margin: 0 0 20px;
+        }
+
+        .section p {
+            color: #625b51;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .rules {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .rule {
+            border: 1px solid #ded7cc;
+            padding: 23px;
+            background: #faf8f3;
+        }
+
+        .rule-number {
+            font-family: Georgia, serif;
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .rule-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .rule-text {
+            color: #756d61;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 16px 14px;
+            border-bottom: 1px solid #ddd7cc;
+            font-size: 14px;
+        }
+
+        th {
+            background: #eee9df;
+            font-weight: bold;
+        }
+
+        td {
+            color: #625b51;
+        }
+
+        .fine-box {
+            margin-top: 20px;
+            padding: 25px;
+            background: #eee9df;
+            border-left: 4px solid #8d7b63;
+        }
+
+        .fine-box strong {
+            font-family: Georgia, serif;
+            font-size: 21px;
+        }
+
+        .example {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #d8d0c4;
+            background: #faf8f3;
+        }
+
+        .example-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .note {
+            color: #756d61;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        @media (max-width: 750px) {
+
+            .nav {
+                padding: 0 20px;
+                gap: 15px;
+                overflow-x: auto;
+            }
+
+            .container {
+                padding: 40px 18px;
+            }
+
+            .heading h1 {
+                font-size: 38px;
+            }
+
+            .rules {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 25px;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="nav">
+
+        <div class="logo">
+            LIBRARY.
+        </div>
+
+        <a href="dashboard.html">Home</a>
+        <a href="books.html">Catalogue</a>
+        <a href="my-books.html">My Books</a>
+        <a href="reservations.html">Reservations</a>
+        <a href="fine.html">Fine</a>
+        <a href="rules.html">Rules</a>
+
+    </div>
+
+
+    <div class="container">
+
+        <div class="heading">
+
+            <small>Library Information</small>
+
+            <h1>Rules & Regulations</h1>
+
+            <p>
+                The following rules define borrowing limits, loan periods,
+                overdue

@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Catalogue | LIBRARY.</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f6f3ed;
+            color: #292722;
+        }
+
+
+        /* NAVIGATION */
+
+        .nav {
+            min-height: 70px;
+            background: #fffdf8;
+            border-bottom: 1px solid #ddd7cc;
+
+            display: flex;
+            align-items: center;
+
+            padding: 0 55px;
+            gap: 28px;
+        }
+
+
+        .logo {
+            font-family: Georgia, serif;
+            font-size: 25px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            margin-right: auto;
+        }
+
+
+        .nav a {
+            color: #5d564c;
+            text-decoration: none;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+
+        .nav a:hover {
+            color: #1f1d19;
+        }
+
+
+        .signout {
+            border-left: 1px solid #ddd7cc;
+            padding-left: 28px;
+        }
+
+
+        /* PAGE */
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 50px 25px 70px;
+        }
+
+
+        .heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            gap: 30px;
+            margin-bottom: 35px;
+        }
+
+
+        .heading small {
+            color: #8b8173;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 11px;
+        }
+
+
+        .heading h1 {
+            font-family: Georgia, serif;
+            font-size: 48px;
+            font-weight: normal;
+            margin: 10px 0;
+        }
+
+
+        .heading p {
+            color: #756d61;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+
+        .member-badge {
+            border: 1px solid #cfc7ba;
+            background: #fffdf8;
+            padding: 12px 18px;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+
+
+        /* SEARCH */
+
+        .search-area {
+            margin-bottom: 35px;
+        }
+
+
+        #searchInput {
+            width: 100%;
+            padding: 15px 18px;
+
+            border: 1px solid #d5cec2;
+            background: #fffdf8;
+
+            font-size: 14px;
+            outline: none;
+        }
+
+
+        #searchInput:focus {
+            border-color: #8d7b63;
+        }
+
+
+        /* SELECTION INFO */
+
+        .selection-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 22px;
+
+            color: #756d61;
+            font-size: 13px;
+        }
+
+
+        .selection-count {
+            font-weight: bold;
+            color: #403a32;
+        }
+
+
+        /* BOOK GRID */
+
+        .book-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+
+        /* BOOK CARD */
+
+        .book-card {
+            background: #fffdf8;
+            border: 1px solid #ddd7cc;
+
+            padding: 18px;
+
+            transition: transform 0.2s ease,
+                        box-shadow 0.2s ease;
+        }
+
+
+        .book-card:hover {
+            transform: translateY(-4px);
+
+            box-shadow:
+                0 12px 30px
+                rgba(50, 43, 32, 0.10);
+        }
+
+
+        /* COVER */
+
+        .cover {
+            width: 100%;
+            height: 330px;
+
+            object-fit: cover;
+
+            display: block;
+
+            background: #e9e2d6;
+        }
+
+
+        .book-info {
+            padding: 20px 3px 5px;
+        }
+
+
+        .category {
+            color: #8b8173;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 10px;
+            margin-bottom: 9px;
+        }
+
+
+        .book-title {
+            font-family: Georgia, serif;
+            font-size: 21px;
+            line-height: 1.25;
+            margin-bottom: 8px;
+        }
+
+
+        .author {
+            color: #756d61;
+            font-size: 13px;
+            margin-bottom: 18px;
+        }
+
+
+        .select-btn {
+            width: 100%;
+
+            padding: 12px;
+
+            border: 1px solid #cfc7ba;
+            background: transparent;
+
+            color: #403a32;
+
+            font-size: 12px;
+            letter-spacing: 0.8px;
+
+            cursor: pointer;
+        }
+
+
+        .select-btn:hover {
+            background: #403a32;
+            color: white;
+        }
+
+
+        .select-btn.selected {
+            background: #403a32;
+            color: white;
+        }
+
+
+        .empty {
+            grid-column: 1 / -1;
+
+            text-align: center;
+
+            padding: 70px 20px;
+
+            color: #756d61;
+        }
+
+
+        /* RESPONSIVE */
+
+        @media (max-width: 900px) {
+
+            .nav {
+                padding: 15px 20px;
+                gap: 15px;
+                overflow-x: auto;
+            }
+
+
+            .signout {
+                padding-left: 15px;
+            }
+
+
+            .book-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+
+            .heading {
+                align-items: start;
+                flex-direction: column;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .book-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .heading h1 {
+                font-size: 38px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVIGATION -->
+
+    <div class="nav">
+
+        <div class="logo">
+            LIBRARY.
+        </div>
+
+
+        <a href="dashboard.html">
+            Home
+        </a>
+
+
+        <a href="books.html">
+            Catalogue
+        </a>
+
+
+        <a href="my-books.html">
+            My Books
+        </a>
+
+
+        <a href="reservations.html">
+            Reservations
+        </a>
+
+
+        <a href="fine.html">
+            Fine
+        </a>
+
+
+        <a href="rules.html">
+            Rules
+        </a>
+
+
+        <a href="#"
+           class="signout"
+           onclick="signOut()">
+            Sign Out
+        </a>
+
+    </div>
+
+
+
+    <!-- MAIN -->
+
+    <div class="container">
+
+
+        <div class="heading">
+
+            <div>
+
+                <small>
+                    Library Collection
+                </small>
+
+
+                <h1>
+                    Catalogue
+                </h1>
+
+
+                <p id="catalogueDescription">
+                    Explore the available collection.
+                </p>
+
+            </div>
+
+
+            <div class="member-badge">
+
+                Member:
+                <strong id="memberType">
+                    Member
+                </strong>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- SEARCH -->
+
+        <div class="search-area">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search by title, author or category..."
+            >
+
+        </div>
+
+
+
+        <!-- SELECTION -->
+
+        <div class="selection-bar">
+
+            <div id="bookCount">
+                Books available
+            </div>
+
+
+            <div class="selection-count">
+
+                Selected:
+                <span id="selectedCount">0</span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- BOOKS -->
+
+        <div
+            class="book-grid"
+            id="bookGrid">
+        </div>
+
+
+    </div>
+
+
+
+    <script>
+
+
+        /* =========================
+           ACCOUNT INFORMATION
+        ========================= */
+
+
+        const savedMemberType =
+            localStorage.getItem("libraryMemberType");
+
+
+        const username =
+            localStorage.getItem("libraryUsername");
+
+
+
+        /* =========================
+           BOOK COLLECTIONS
+        ========================= */
+
+
+        const studentBooks = [
+
+            {
+                isbn: "9780133591620",
+
+                title: "Operating System Concepts",
+
+                author: "Abraham Silberschatz",
+
+                category: "Computer Science",
+
+                cover:
+                "https://covers.openlibrary.org/b/isbn/9780133591620-L.jpg"
+            },
+
+
+            {
+                isbn: "9780132126953",
+
+                title: "Computer Networks",
+
+                author: "Andrew S. Tanenbaum",
+
+                category: "Computer Science",
+
+                cover:
+                "https://covers.openlibrary.org/b/isbn/9780132126953-L.jpg"
+            },
+
+
+            {
+                isbn: "9780134610993",
+
+                title: "Artificial Intelligence",
+
+                author: "Stuart Russell & Peter Norvig",
+
+                category: "Artificial Intelligence",
+
+                cover:
+                "https://covers.openlibrary.org/b/isbn/9780134610993-L.jpg"
+            },
+
+
+            {
+                isbn: "9780062315007",
+
+                title: "The Alchemist",
+
+                author: "Paulo Coelho",
+
+                category: "Novel",
+
+                cover:
+                "https://covers.openlibrary.org/b/isbn/9780062315007-L.jpg"
+            },
+
+
+            {
+                isbn: "9780073523323",
+
+                title: "Database System Concepts",
+
+                author: "Abraham Silberschatz",
+
+                category: "Database",
+
+                cover:
+                "https://covers.openlibrary.org/b/isbn/9780073523323-L.jpg"
+            },
+
+
+            {
+                isbn: "9780131103627",
+
+                title: "The C Programming Language",
+
+                author: "Brian W. Kernighan",
+
+                category: "Programming",
+
+                cover:
+                "https://covers.openlibrary.org/b/isbn/9780131103627-L.jpg"
+            }
+
+        ];
+
+
+
+        const facultyBooks = [
+
+            {
+                isbn: "9780132350884",
+
+                title: "Clean Code",
+
+                author: "Robert C. Martin",
+
+                category: "Software Engineering",
+
+                cover:
+                "https://covers.openlibrary.org/b/isbn/9780132350884-L.jpg"
+            },
+
+
+            {
+                isbn: "9780201633610",
+
+                title: "Design Patterns",
+
+                author: "Erich Gamma et al.",
+
+                category: "Software Design",
+
+                cover:
+                "https://covers.openlibrary.org/b/isbn/9780201633610-L.jpg"
+            },
+
+
+            {
+                isbn: "9780262046305",
+
+                title: "Introduction to Algorithms",
+
+                author: "Thomas H. Cormen",
+
+                category: "Algorithms",
+
+                cover:
+                "https://covers.openlibrary.org/b/isbn/9780262046305-L.jpg"
+            },
+
+
+            {
+                isbn: "9780136042594",
+
+                title: "Artificial Intelligence: A Modern Approach",
+
+                author: "Stuart Russell & Peter Norvig",
+
+                category: "Artificial Intelligence",
+
+                cover:
+                "https://covers.openlibrary.org/b/isbn/9780136042594-L.jpg"
+            },
+
+
+            {
+                isbn: "9780078022159",
+
+                title: "Database System Concepts",
+
+                author: "Abraham Silberschatz",
+
+                category: "Database Research",
+
+                cover:
+                "https://covers.openlibrary.org/b/isbn/9780078022159-L.jpg"
+            },
+
+
+            {
+                isbn: "9780124157966",
+
+                title: "Computer Architecture",
+
+                author: "John L. Hennessy",
+
+                category: "Computer Architecture",
+
+                cover:
+                "https://covers.openlibrary.org/b/isbn/9780124157966-L.jpg"
+            }
+
+        ];
+
+
+
+        /* =========================
+           SELECT CORRECT CATALOGUE
+        ========================= */
+
+
+        let books;
+
+
+        if (
+            savedMemberType &&
+            savedMemberType
+                .toLowerCase()
+                .includes("faculty")
+        ) {
+
+            books = facultyBooks;
+
+
+            document
+                .getElementById("memberType")
+                .textContent =
+                "Research Faculty";
+
+
+            document
+                .getElementById("catalogueDescription")
+                .textContent =
+                "Advanced academic, research and reference collection.";
+
+        }
+
+        else {
+
+            books = studentBooks;
+
+
+            document
+                .getElementById("memberType")
+                .textContent =
+                "Undergraduate Student";
+
+
+            document
+                .getElementById("catalogueDescription")
+                .textContent =
+                "Textbooks, technology and general reading collection.";
+
+        }
+
+
+
+        /* =========================
+           SELECTED BOOKS
+        ========================= */
+
+
+        let selectedBooks =
+            JSON.parse(
+                localStorage.getItem("selectedBooks")
+            ) || [];
+
+
+
+        /* =========================
+           DISPLAY BOOKS
+        ========================= */
+
+
+        function displayBooks(bookList) {
+
+            const grid =
+                document.getElementById("bookGrid");
+
+
+            grid.innerHTML = "";
+
+
+            document
+                .getElementById("bookCount")
+                .textContent =
+                bookList.length +
+                " books available";
+
+
+            if (bookList.length === 0) {
+
+                grid.innerHTML =
+                    '<div class="empty">' +
+                    'No books found.' +
+                    '</div>';
+
+                return;
+            }
+
+
+            bookList.forEach(function(book) {
+
+
+                const card =
+                    document.createElement("div");
+
+                card.className =
+                    "book-card";
+
+
+                const isSelected =
+                    selectedBooks.some(
+                        function(item) {
+                            return item.isbn === book.isbn;
+                        }
+                    );
+
+
+                card.innerHTML = `
+
+                    <img
+                        class="cover"
+                        src="${book.cover}"
+                        alt="${book.title}"
+                        onerror="this.src='https://via.placeholder.com/400x600?text=LIBRARY.'"
+                    >
+
+                    <div class="book-info">
+
+                        <div class="category">
+                            ${book.category}
+                        </div>
+
+                        <div class="book-title">
+                            ${book.title}
+                        </div>
+
+                        <div class="author">
+                            ${book.author}
+                        </div>
+
+                        <button
+                            class="select-btn ${isSelected ? "selected" : ""}"
+                            onclick="toggleBook('${book.isbn}')">
+
+                            ${isSelected
+                                ? "✓ SELECTED"
+                                : "SELECT BOOK"}
+
+                        </button>
+
+                    </div>
+
+                `;
+
+
+                grid.appendChild(card);
+
+            });
+
+
+            updateSelectedCount();
+
+        }
+
+
+
+        /* =========================
+           SELECT / REMOVE BOOK
+        ========================= */
+
+
+        function toggleBook(isbn) {
+
+            const book =
+                books.find(
+                    function(item) {
+                        return item.isbn === isbn;
+                    }
+                );
+
+
+            const index =
+                selectedBooks.findIndex(
+                    function(item) {
+                        return item.isbn === isbn;
+                    }
+                );
+
+
+            if (index !== -1) {
+
+                selectedBooks.splice(index, 1);
+
+            }
+
+            else {
+
+                selectedBooks.push(book);
+
+            }
+
+
+            localStorage.setItem(
+                "selectedBooks",
+                JSON.stringify(selectedBooks)
+            );
+
+
+            displayBooks(books);
+
+        }
+
+
+
+        /* =========================
+           SELECTED COUNT
+        ========================= */
+
+
+        function updateSelectedCount() {
+
+            document
+                .getElementById("selectedCount")
+                .textContent =
+                selectedBooks.length;
+
+        }
+
+
+
+        /* =========================
+           SEARCH
+        ========================= */
+
+
+        document
+            .getElementById("searchInput")
+            .addEventListener(
+                "input",
+                function() {
+
+                    const search =
+                        this.value
+                            .toLowerCase()
+                            .trim();
+
+
+                    const filtered =
+                        books.filter(
+                            function(book) {
+
+                                return (
+
+                                    book.title
+                                        .toLowerCase()
+                                        .includes(search)
+
+                                    ||
+
+                                    book.author
+                                        .toLowerCase()
+                                        .includes(search)
+
+                                    ||
+
+                                    book.category
+                                        .toLowerCase()
+                                        .includes(search)
+
+                                );
+
+                            }
+                        );
+
+
+                    displayBooks(filtered);
+
+                }
+            );
+
+
+
+        /* =========================
+           SIGN OUT
+        ========================= */
+
+
+        function signOut() {
+
+            localStorage.removeItem(
+                "libraryUsername"
+            );
+
+
+            localStorage.removeItem(
+                "libraryMemberType"
+            );
+
+
+            localStorage.removeItem(
+                "selectedBooks"
+            );
+
+
+            window.location.href =
+                "login.html";
+
+        }
+
+
+
+        /* =========================
+           INITIAL LOAD
+        ========================= */
+
+
+        displayBooks(books);
+
+    </script>
+
+
+</body>
+
+</html>

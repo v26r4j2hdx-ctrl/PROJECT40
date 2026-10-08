@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Books | Library</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #f6f3ed;
+            color: #292725;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        header {
+            background: #faf8f3;
+            border-bottom: 1px solid #ddd7cc;
+            padding: 18px 7%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 23px;
+            letter-spacing: 1px;
+        }
+
+        .brand span {
+            color: #a17d59;
+        }
+
+        .nav {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .nav a {
+            color: #55504a;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .nav a:hover {
+            color: #9a7654;
+        }
+
+        .hero {
+            width: 86%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 55px 0 35px;
+            border-bottom: 1px solid #ddd7cc;
+        }
+
+        .eyebrow {
+            color: #9a7654;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        .hero h1 {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 48px;
+            font-weight: normal;
+            margin: 0;
+        }
+
+        .hero p {
+            color: #706b64;
+            line-height: 1.7;
+            max-width: 650px;
+            margin-top: 16px;
+        }
+
+        .container {
+            width: 86%;
+            max-width: 1200px;
+            margin: 35px auto 70px;
+        }
+
+        .book-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        .book-card {
+            background: #faf8f3;
+            border: 1px solid #ddd7cc;
+            padding: 18px;
+            transition: 0.25s;
+        }
+
+        .book-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 25px rgba(50, 43, 35, 0.09);
+        }
+
+        .cover {
+            height: 300px;
+            background: #e7e0d5;
+            overflow: hidden;
+        }
+
+        .cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .category {
+            color: #9a7654;
+            font-size: 10px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-top: 18px;
+        }
+
+        .title {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 22px;
+            line-height: 1.2;
+            margin: 8px 0 5px;
+        }
+
+        .author {
+            color: #777169;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .status {
+            border-top: 1px solid #e1dbd1;
+            padding-top: 12px;
+            color: #6b7658;
+            font-size: 12px;
+        }
+
+        .remove {
+            width: 100%;
+            margin-top: 15px;
+            padding: 11px;
+
+            background: transparent;
+            border: 1px solid #b9aaa0;
+
+            color: #754f47;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .remove:hover {
+            background: #eee4dc;
+        }
+
+        .empty {
+            text-align: center;
+            background: #faf8f3;
+            border: 1px solid #ddd7cc;
+            padding: 70px 30px;
+        }
+
+        .empty h2 {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 30px;
+            font-weight: normal;
+            margin-top: 0;
+        }
+
+        .empty p {
+            color: #777169;
+            margin-bottom: 25px;
+        }
+
+        .browse {
+            display: inline-block;
+            background: #55483b;
+            color: white;
+            text-decoration: none;
+            padding: 12px 22px;
+            font-size: 13px;
+        }
+
+        .browse:hover {
+            background: #40362d;
+        }
+
+        footer {
+            border-top: 1px solid #ddd7cc;
+            background: #faf8f3;
+            padding: 30px 7%;
+
+            display: flex;
+            justify-content: space-between;
+
+            color: #817b73;
+            font-size: 12px;
+        }
+
+        @media (max-width: 900px) {
+
+            .book-list {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .book-list {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <header>
+
+        <div class="brand">
+            LIBRARY<span>.</span>
+        </div>
+
+        <div class="nav">
+
+            <a href="dashboard.html">
+                Home
+            </a>
+
+            <a href="books.html">
+                Catalogue
+            </a>
+
+            <a href="my-books.html">
+                My Books
+            </a>
+
+            <a href="reservations.html">
+                Reservations
+            </a>
+
+            <a href="fine.html">
+                Fine
+            </a>
+
+            <a href="rules.html">
+                Rules
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <section class="hero">
+
+        <div class="eyebrow">
+            Personal Collection
+        </div>
+
+        <h1>
+            My Books
+        </h1>
+
+        <p>
+            Books you have selected from the library catalogue
+            appear here. You can remove a book at any time.
+        </p>
+
+    </section>
+
+
+    <main class="container">
+
+        <div
+            class="book-list"
+            id="bookList">
+        </div>
+
+
+        <div
+            class="empty"
+            id="empty"
+            style="display: none;">
+
+            <h2>
+                Your collection is empty.
+            </h2>
+
+            <p>
+                Browse the catalogue and select a book to add it here.
+            </p>
+
+            <a
+                class="browse"
+                href="books.html">
+
+                Browse Catalogue
+
+            </a>
+
+        </div>
+
+    </main>
+
+
+    <footer>
+
+        <span>
+            Digital Library Portal
+        </span>
+
+        <span>
+            Project 40 · My Books
+        </span>
+
+    </footer>
+
+
+    <script>
+
+        function getBooks() {
+
+            var stored =
+                localStorage.getItem("selectedBooks");
+
+            if (!stored) {
+                return [];
+            }
+
+            try {
+                return JSON.parse(stored);
+            }
+
+            catch (error) {
+                return [];
+            }
+
+        }
+
+
+        function displayBooks() {
+
+            var books = getBooks();
+
+            var list =
+                document.getElementById("bookList");
+
+            var empty =
+                document.getElementById("empty");
+
+
+            list.innerHTML = "";
+
+
+            if (books.length === 0) {
+
+                list.style.display = "none";
+                empty.style.display = "block";
+
+                return;
+            }
+
+
+            list.style.display = "grid";
+            empty.style.display = "none";
+
+
+            books.forEach(function(book, index) {
+
+                var card =
+                    document.createElement("div");
+
+                card.className = "book-card";
+
+
+                card.innerHTML =
+
+                    '<div class="cover">' +
+
+                        '<img src="' +
+                        book.image +
+                        '" alt="' +
+                        book.title +
+                        ' book cover">' +
+
+                    '</div>' +
+
+                    '<div class="category">' +
+                        (book.category || "Library Collection") +
+                    '</div>' +
+
+                    '<div class="title">' +
+                        book.title +
+                    '</div>' +
+
+                    '<div class="author">' +
+                        book.author +
+                    '</div>' +
+
+                    '<div class="status">' +
+                        'Selected for borrowing / reservation' +
+                    '</div>' +
+
+                    '<button class="remove" ' +
+                    'onclick="removeBook(' +
+                    index +
+                    ')">' +
+
+                        'Remove Book' +
+
+                    '</button>';
+
+
+                list.appendChild(card);
+
+            });
+
+        }
+
+
+        function removeBook(index) {
+
+            var books = getBooks();
+
+            var bookName =
+                books[index].title;
+
+
+            var confirmRemove =
+                confirm(
+                    'Remove "' +
+                    bookName +
+                    '" from My Books?'
+                );
+
+
+            if (!confirmRemove) {
+                return;
+            }
+
+
+            books.splice(index, 1);
+
+
+            localStorage.setItem(
+                "selectedBooks",
+                JSON.stringify(books)
+            );
+
+
+            displayBooks();
+
+        }
+
+
+        displayBooks();
+
+    </script>
+
+
+</body>
+
+</html>

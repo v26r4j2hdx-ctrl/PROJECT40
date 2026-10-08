@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Fine Calculator | Library</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #f6f3ed;
+            color: #292725;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        header {
+            background: #faf8f3;
+            border-bottom: 1px solid #ddd7cc;
+            padding: 18px 7%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 23px;
+            letter-spacing: 1px;
+        }
+
+        .brand span {
+            color: #a17d59;
+        }
+
+        .nav {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .nav a {
+            color: #55504a;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .nav a:hover {
+            color: #9a7654;
+        }
+
+        .hero {
+            width: 86%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 55px 0 35px;
+            border-bottom: 1px solid #ddd7cc;
+        }
+
+        .eyebrow {
+            color: #9a7654;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        .hero h1 {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 48px;
+            font-weight: normal;
+            margin: 0;
+        }
+
+        .hero p {
+            color: #706b64;
+            line-height: 1.7;
+            max-width: 650px;
+            margin-top: 16px;
+        }
+
+        .container {
+            width: 86%;
+            max-width: 1100px;
+            margin: 40px auto 70px;
+
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 30px;
+        }
+
+        .card {
+            background: #faf8f3;
+            border: 1px solid #ddd7cc;
+            padding: 32px;
+        }
+
+        .card h2 {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 28px;
+            font-weight: normal;
+            margin-top: 0;
+        }
+
+        .card p {
+            color: #777169;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        label {
+            display: block;
+            color: #514b45;
+            font-size: 12px;
+            margin-top: 25px;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px;
+
+            background: #f6f3ed;
+            border: 1px solid #cfc7bb;
+
+            font-size: 14px;
+            color: #292725;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #9a7654;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 13px;
+
+            background: #55483b;
+            color: white;
+
+            border: none;
+            cursor: pointer;
+
+            font-size: 13px;
+        }
+
+        button:hover {
+            background: #40362d;
+        }
+
+        .result {
+            margin-top: 25px;
+            padding: 20px;
+
+            background: #eee7dc;
+            border-left: 3px solid #a17d59;
+
+            display: none;
+        }
+
+        .result-title {
+            color: #716354;
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .amount {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 38px;
+            margin-top: 7px;
+        }
+
+        .breakdown {
+            margin-top: 10px;
+            color: #706b64;
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        .rule-box {
+            margin-top: 25px;
+            border-top: 1px solid #ddd7cc;
+        }
+
+        .rule {
+            padding: 18px 0;
+            border-bottom: 1px solid #ddd7cc;
+        }
+
+        .rule strong {
+            display: block;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 18px;
+            font-weight: normal;
+            margin-bottom: 5px;
+        }
+
+        .rule span {
+            color: #777169;
+            font-size: 12px;
+        }
+
+        .example {
+            margin-top: 25px;
+            padding: 20px;
+            background: #f0ebe3;
+        }
+
+        .example strong {
+            font-family: Georgia, "Times New Roman", serif;
+            font-weight: normal;
+            font-size: 18px;
+        }
+
+        .example p {
+            margin-bottom: 0;
+        }
+
+        footer {
+            border-top: 1px solid #ddd7cc;
+            background: #faf8f3;
+            padding: 30px 7%;
+
+            display: flex;
+            justify-content: space-between;
+
+            color: #817b73;
+            font-size: 12px;
+        }
+
+        @media (max-width: 800px) {
+
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <header>
+
+        <div class="brand">
+            LIBRARY<span>.</span>
+        </div>
+
+
+        <div class="nav">
+
+            <a href="dashboard.html">
+                Home
+            </a>
+
+            <a href="books.html">
+                Catalogue
+            </a>
+
+            <a href="my-books.html">
+                My Books
+            </a>
+
+            <a href="reservations.html">
+                Reservations
+            </a>
+
+            <a href="fine.html">
+                Fine
+            </a>
+
+            <a href="rules.html">
+                Rules
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <section class="hero">
+
+        <div class="eyebrow">
+            Overdue Calculation
+        </div>
+
+        <h1>
+            Fine Calculator
+        </h1>
+
+        <p>
+            Calculate your overdue library fine using the
+            Project 40 tiered penalty rules.
+        </p>
+
+    </section>
+
+
+    <main class="container">
+
+
+        <section class="card">
+
+            <h2>
+                Calculate your fine
+            </h2>
+
+            <p>
+                Enter the number of days a book is overdue.
+                The calculator automatically applies the
+                correct penalty rate.
+            </p>
+
+
+            <label for="overdueDays">
+                Overdue Days
+            </label>
+
+            <input
+                type="number"
+                id="overdueDays"
+                min="0"
+                placeholder="Example: 10">
+
+
+            <button onclick="calculateFine()">
+                Calculate Fine
+            </button>
+
+
+            <div
+                class="result"
+                id="result">
+
+                <div class="result-title">
+                    Total Fine
+                </div>
+
+                <div
+                    class="amount"
+                    id="amount">
+                    ₹0
+                </div>
+
+                <div
+                    class="breakdown"
+                    id="breakdown">
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="card">
+
+            <h2>
+                Fine rules
+            </h2>
+
+            <p>
+                The overdue penalty is divided into two tiers.
+            </p>
+
+
+            <div class="rule-box">
+
+                <div class="rule">
+
+                    <strong>
+                        First 7 days
+                    </strong>
+
+                    <span>
+                        ₹2 per overdue day
+                    </span>
+
+                </div>
+
+
+                <div class="rule">
+
+                    <strong>
+                        After 7 days
+                    </strong>
+
+                    <span>
+                        ₹5 per additional overdue day
+                    </span>
+
+                </div>
+
+
+                <div class="rule">
+
+                    <strong>
+                        Maximum threshold
+                    </strong>
+
+                    <span>
+                        ₹1,000
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="example">
+
+                <strong>
+                    Example
+                </strong>
+
+                <p>
+                    10 overdue days =
+                    7 × ₹2 + 3 × ₹5 =
+                    <b>₹29</b>
+                </p>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <footer>
+
+        <span>
+            Digital Library Portal
+        </span>
+
+        <span>
+            Project 40 · Fine Calculator
+        </span>
+
+    </footer>
+
+
+    <script>
+
+        function calculateFine() {
+
+            var input =
+                document.getElementById("overdueDays");
+
+            var result =
+                document.getElementById("result");
+
+            var amount =
+                document.getElementById("amount");
+
+            var breakdown =
+                document.getElementById("breakdown");
+
+
+            var overdueDays =
+                Number(input.value);
+
+
+            if (
+                input.value === "" ||
+                overdueDays < 0
+            ) {
+
+                alert(
+                    "Please enter a valid number of overdue days."
+                );
+
+                return;
+            }
+
+
+            var firstTierDays =
+                Math.min(overdueDays, 7);
+
+
+            var secondTierDays =
+                Math.max(overdueDays - 7, 0);
+
+
+            var firstTierFine =
+                firstTierDays * 2;
+
+
+            var secondTierFine =
+                secondTierDays * 5;
+
+
+            var totalFine =
+                firstTierFine + secondTierFine;
+
+
+            result.style.display = "block";
+
+
+            amount.textContent =
+                "₹" + totalFine;
+
+
+            breakdown.innerHTML =
+                firstTierDays +
+                " day(s) × ₹2 = ₹" +
+                firstTierFine +
+                "<br>" +
+
+                secondTierDays +
+                " day(s) × ₹5 = ₹" +
+                secondTierFine;
+
+
+            if (totalFine > 1000) {
+
+                amount.textContent =
+                    "₹" + totalFine;
+
+                breakdown.innerHTML +=
+                    "<br><br><b>Warning:</b> " +
+                    "The fine exceeds the maximum threshold of ₹1,000.";
+
+            }
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>
